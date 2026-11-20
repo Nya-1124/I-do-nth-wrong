@@ -7,7 +7,7 @@ A static, mobile-first satirical chat game in Hong Kong Cantonese.
 ## 本地開
 
 ```bash
-python3 -m http.server 8080 -d site
+python3 -m http.server 8080
 ```
 
 瀏覽器開 <http://127.0.0.1:8080/>。唔好用 `file://`，模組腳本要經 HTTP。
@@ -22,13 +22,10 @@ node --test tests/game.test.mjs
 
 ## GitHub Pages
 
-專案頁路徑係 `/I-do-nth-wrong/`。`site/` 入面嘅連結都係相對，所以子路徑同本地根路徑都用得。
+專案頁路徑係 `/I-do-nth-wrong/`。遊戲檔喺 repo 根目錄，連結係相對，所以子路徑同本地根路徑都用得。根目錄有 `.nojekyll`，避免 Jekyll 用 README 做首頁。
 
-1. 打開 repo 嘅 **Settings → Pages → Build and deployment**。
-2. **Source** 揀 **GitHub Actions**。
-3. 合併去 `main` 之後，[`.github/workflows/pages.yml`](.github/workflows/pages.yml) 會上傳 `site/`。
-4. 部署成功，頁面先至係 <https://nya-1124.github.io/I-do-nth-wrong/>。
+[`.github/workflows/pages.yml`](.github/workflows/pages.yml) 會將同一批遊戲檔上傳去 GitHub Actions。Pages 如果仍然係從 `main` 根目錄發佈，`.nojekyll` 同 `index.html` 都會係個遊戲。
 
-未在 Pages 揀 GitHub Actions 之前，推上 `main` 個部署 workflow 會失敗；揀好再重新跑一次。而家未核實到 Pages 已經啟用或者條連結開到。
+頁面：<https://nya-1124.github.io/I-do-nth-wrong/>
 
 唔好為咗部署改 repo 嘅 public / private。

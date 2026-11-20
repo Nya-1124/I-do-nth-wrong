@@ -11,9 +11,9 @@ import {
   restartNow,
   selectCharacter,
   switchNow,
-} from "../site/js/engine.js";
-import { characters, getCharacter, meta, nodes } from "../site/js/story.js";
-import { render, titleFor } from "../site/js/view.js";
+} from "../js/engine.js";
+import { characters, getCharacter, meta, nodes } from "../js/story.js";
+import { render, titleFor } from "../js/view.js";
 
 const banned = /[这说对吗么们国时样发过还进头问现经长从两无应东车门爱点业会开为与书听说让给错体没]/u;
 const kinds = new Set(["boundary", "loop", "fall"]);
@@ -292,11 +292,11 @@ test("confirm restart and switch, and the screen does not spoil the kind", () =>
 });
 
 test("static site stays relative, offline, and deployable to the repo subpath", () => {
-  const html = fs.readFileSync(new URL("../site/index.html", import.meta.url), "utf8");
-  const css = fs.readFileSync(new URL("../site/css/styles.css", import.meta.url), "utf8");
-  const game = fs.readFileSync(new URL("../site/js/game.js", import.meta.url), "utf8");
-  const engine = fs.readFileSync(new URL("../site/js/engine.js", import.meta.url), "utf8");
-  const view = fs.readFileSync(new URL("../site/js/view.js", import.meta.url), "utf8");
+  const html = fs.readFileSync(new URL("../index.html", import.meta.url), "utf8");
+  const css = fs.readFileSync(new URL("../css/styles.css", import.meta.url), "utf8");
+  const game = fs.readFileSync(new URL("../js/game.js", import.meta.url), "utf8");
+  const engine = fs.readFileSync(new URL("../js/engine.js", import.meta.url), "utf8");
+  const view = fs.readFileSync(new URL("../js/view.js", import.meta.url), "utf8");
   const pages = fs.readFileSync(new URL("../.github/workflows/pages.yml", import.meta.url), "utf8");
   const ci = fs.readFileSync(new URL("../.github/workflows/test.yml", import.meta.url), "utf8");
 
@@ -318,5 +318,5 @@ test("static site stays relative, offline, and deployable to the repo subpath", 
   assert.match(pages, /path:\s*site/);
   assert.match(pages, /branches:\s*\[main\]/);
   assert.match(ci, /node --test tests\/game\.test\.mjs/);
-  assert.equal(fs.existsSync(new URL("../site/.nojekyll", import.meta.url)), true);
+  assert.equal(fs.existsSync(new URL("../.nojekyll", import.meta.url)), true);
 });
